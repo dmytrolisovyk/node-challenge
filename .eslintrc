@@ -46,7 +46,8 @@
         {
           "vars": "all",
           "args": "after-used",
-          "ignoreRestSiblings": false
+          "ignoreRestSiblings": false,
+          "argsIgnorePattern": "^_"
         }
       ],
       "@typescript-eslint/type-annotation-spacing": "error",

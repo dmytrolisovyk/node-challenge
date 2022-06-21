@@ -19,7 +19,7 @@ module.exports = {
     'ts-jest': {
       diagnostics: false,
       isolatedModules: true,
-      tsConfig: '<rootDir>/tsconfig.json',
+      tsconfig: '<rootDir>/tsconfig.json',
     },
   },
   modulePathIgnorePatterns: [
@@ -27,7 +27,7 @@ module.exports = {
   ],
   preset: 'ts-jest',
   setupFilesAfterEnv: [
-    '<rootDir>/test/utils/jest/config-injector.ts',
+    '<rootDir>/test/utils/jest/process-config.ts',
     '<rootDir>/test/utils/jest/error-matchers.ts',
   ],
   testEnvironment: 'node',

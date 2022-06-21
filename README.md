@@ -56,3 +56,11 @@ The command above will run the following test suites sequentially:
 
 
 Happy hacking 😁!
+
+## Solution
+### Thought process
+- Before starting coding I decided first to make sure that everything is setup, working and all tests are passing.
+I setup the database. Since I have a local user and password it didn't make sense to commit it. So I created a local.js 
+file with the data specific to my machine and added it to .gitignore
+- I tried to run some tests but get errors and warnings. I moved auth.jwtSecret to qa.config and renamed config-injector to process-config, cause it didn't do anything related to config injection. Unit test passed.
+- Acceptance test failed. I fixed an issue in server.ts, but eslint didn't like my fix. I added a rule to ignore unused var that start from _. Eslint is happy and the app + tests are fine. Also, I fixed some jest warning right away cause that was easy to fix.
