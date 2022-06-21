@@ -66,3 +66,7 @@ file with the data specific to my machine and added it to .gitignore
 - Acceptance test failed. I fixed an issue in server.ts, but eslint didn't like my fix. I added a rule to ignore unused var that start from _. Eslint is happy and the app + tests are fine. Also, I fixed some jest warning right away cause that was easy to fix.
 
 - Ok. Now lets implement the expenses functionality. Before any major impovements and refactorings, let's make something that acctually works and then improve it. I will follow the proposed file structure to align with the rest of the API.
+
+- Ok. Now we have something working. Let's improve it. We need to add some formatting to the data we fetch. As we can see we have 
+some functions in user domain. Let's move some shared stuff to utils.
+- Ok, so I was wondering all this time why we actually return JSON as a string. It turned out that the implementation of secureTrim does it in a tricky way. So I moved the formatting stuff to shared code (utils), to be able to reuse the formatting fuctionality. And then I changed secureTrim to return an object, so that JSON is now returned. Also, updated tests and added type declarations to separate layers a bit. So we have UserExpense and UserExpenseResponse.

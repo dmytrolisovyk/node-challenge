@@ -1,7 +1,7 @@
 import { ApiError } from '@nc/utils/errors';
+import { formatUserResponse } from '../formatter';
 import { getUserDetails } from '../model';
 import { Router } from 'express';
-import { secureTrim } from '../formatter';
 import { to } from '@nc/utils/async';
 
 export const router = Router();
@@ -17,5 +17,5 @@ router.get('/get-user-details', async (req, res, next) => {
     return res.json({});
   }
 
-  return res.json(secureTrim(userDetails));
+  return res.json(formatUserResponse(userDetails));
 });

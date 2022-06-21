@@ -1,7 +1,7 @@
 import { ApiError } from '@nc/utils/errors';
+import { formatUserExpenseResponse } from '../formatter';
 import { getUserExpenses } from '../model';
 import { Router } from 'express';
-// import { secureTrim } from '../formatter';
 import { to } from '@nc/utils/async';
 
 export const router = Router();
@@ -17,5 +17,5 @@ router.get('/get-user-expenses', async (req, res, next) => {
     return res.json({});
   }
 
-  return res.json(userExpenses);// secureTrim(userExpenses));
+  return res.json(formatUserExpenseResponse(userExpenses));
 });

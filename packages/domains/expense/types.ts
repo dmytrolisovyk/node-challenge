@@ -7,3 +7,11 @@ export interface UserExpense {
     date_created: Date
     status: string
 }
+
+export interface UserExpenseResponse {
+    merchant_name: string
+    amount_in_cents: string
+    currency: string
+    date_created: Date
+    status: string
+}

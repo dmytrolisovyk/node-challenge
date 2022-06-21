@@ -1,10 +1,10 @@
-// import { format } from './formatter';
+import { formatRawUserExpenseData } from './formatter';
 import { readUserExpenses } from './data/db-user-expenses';
 import { to } from '@nc/utils/async';
 import { UserExpense } from './types';
 import { BadRequest, InternalError, NotFound } from '@nc/utils/errors';
 
-export async function getUserExpenses(userId): Promise<UserExpense> {
+export async function getUserExpenses(userId): Promise<UserExpense[]> {
   if (!userId) {
     throw BadRequest('userId property is missing.');
   }
@@ -19,5 +19,5 @@ export async function getUserExpenses(userId): Promise<UserExpense> {
     throw NotFound(`Could not find user with id ${userId}`);
   }
 
-  return rawExpenses;// format(rawExpenses);
+  return formatRawUserExpenseData(rawExpenses);
 }

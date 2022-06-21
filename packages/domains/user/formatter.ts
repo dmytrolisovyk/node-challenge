@@ -1,17 +1,13 @@
 import { User } from './types';
+import { capitalize, secureTrim } from '@nc/utils/formatter';
 
 const publicFields = ['first_name', 'last_name', 'company_name'];
 
-export function capitalize(word) {
-  const str = `${word}`;
-  return str[0].toUpperCase() + str.slice(1);
+export function formatUserResponse(user: User) {
+  return secureTrim(user, publicFields);
 }
 
-export function secureTrim(user: User): string {
-  return JSON.stringify(user, publicFields);
-}
-
-export function format(rawUser): User {
+export function formatRawUserData(rawUser): User {
   return {
     id: rawUser.id,
     first_name: capitalize(rawUser.first_name),
