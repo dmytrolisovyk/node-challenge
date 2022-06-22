@@ -70,3 +70,12 @@ file with the data specific to my machine and added it to .gitignore
 - Ok. Now we have something working. Let's improve it. We need to add some formatting to the data we fetch. As we can see we have 
 some functions in user domain. Let's move some shared stuff to utils.
 - Ok, so I was wondering all this time why we actually return JSON as a string. It turned out that the implementation of secureTrim does it in a tricky way. So I moved the formatting stuff to shared code (utils), to be able to reuse the formatting fuctionality. And then I changed secureTrim to return an object, so that JSON is now returned. Also, updated tests and added type declarations to separate layers a bit. So we have UserExpense and UserExpenseResponse.
+
+- Ok. Let's improve the expense functionality to support paging, sorting and filtering. I've decided to add basic stateless pagination based on limit-offset. I've created some functions to build a query string with pagination, filtering and sorting. It feels like peeking an ORM would simplity stuff, but it will require rewriting half of the app. 
+
+- I also wanted to add some validation to the input of the request. The validation seems to be quite complex, since values for page and pageSize must be correct, the same for filtering and sorting. So I decided to add a validation handler. 
+
+- Also, I noticed an issue with the app. It returns 500 even when BadRequest or other 4.x.x error is thrown. I fixed it 
+with updating the handler in server.ts.
+
+- I was working to building querty for pagination\sorting\filtering and had some concernes. Pg.query uses prepared statements and params, but it doesn't work with dynamic queries. Even though pg doesn't allow multiple statements and I have some request validations I decided to use pg-format to make sure that all params are escaped and no SQL injection possible

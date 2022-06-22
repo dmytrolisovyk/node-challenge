@@ -34,7 +34,7 @@ app.use('/user', userRoutes);
 app.use('/user-expenses', userExpensesRoutes);
 
 app.use(function(err, req, res, _next) {
-  res.status(500).json(err);
+  res.status(err.status ?? 500).json(err);
 });
 
 server.listen(config.port, () => {
