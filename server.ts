@@ -5,6 +5,7 @@ import gracefulShutdown from '@nc/utils/graceful-shutdown';
 import helmet from 'helmet';
 import Logger from '@nc/utils/logging';
 import security from './middleware/security';
+import { router as userExpensesRoutes } from '@nc/domain-expense';
 import { router as userRoutes } from '@nc/domain-user';
 import { createServer as createHTTPServer, Server } from 'http';
 import { createServer as createHTTPSServer, Server as SecureServer } from 'https';
@@ -29,10 +30,11 @@ app.get('/healthcheck', function healthcheckEndpoint(req, res) {
 app.use(context);
 app.use(security);
 
-app.use('/user', userRoutes);
+app.use(userRoutes);
+app.use(userExpensesRoutes);
 
-app.use(function(err, req, res) {
-  res.status(500).json(err);
+app.use(function(err, req, res, _next) {
+  res.status(err.status ?? 500).json(err);
 });
 
 server.listen(config.port, () => {

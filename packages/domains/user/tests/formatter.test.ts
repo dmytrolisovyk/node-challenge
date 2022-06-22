@@ -1,41 +1,8 @@
-import { capitalize, format, secureTrim } from '../formatter';
+import { formatRawUserData, formatUserResponse } from '../formatter';
 
-describe('[Packages | User-domain | Formatter] capitalize', () => {
-  test('capitalize should make the first character as a capital letter', () => {
-    return expect(capitalize('mario')).toEqual('Mario');
-  });
-
-  test('capitalize should do nothing on already capitalized word', () => {
-    return expect(capitalize('Mario')).toEqual('Mario');
-  });
-
-  test('capitalize should do nothing on numbers', () => {
-    return expect(capitalize(123)).toEqual('123');
-  });
-
-  test('capitalize should do nothing on strings of numbers', () => {
-    return expect(capitalize('123')).toEqual('123');
-  });
-});
-
-describe('[Packages | User-domain | Formatter] secureTrim', () => {
-  test('secureTrim should remove fields that are not defined in the list of public fields', () => {
-    return expect(secureTrim({
-      first_name: 'John',
-      last_name: 'Smith',
-      company_name: 'Pleo',
-      ssn: 1,
-    })).toEqual(JSON.stringify({
-      first_name: 'John',
-      last_name: 'Smith',
-      company_name: 'Pleo',
-    }));
-  });
-});
-
-describe('[Packages | User-domain | Formatter] format', () => {
+describe('[Packages | User-domain | Formatter] formatRawUserData', () => {
   test('format should return an instance of users that fits the API model, based on the db raw value', () => {
-    return expect(format({
+    return expect(formatRawUserData({
       first_name: 'john',
       last_name: 'smith',
       company_name: 'Pleo',
@@ -45,6 +12,22 @@ describe('[Packages | User-domain | Formatter] format', () => {
       last_name: 'Smith',
       company_name: 'Pleo',
       ssn: 1,
+    });
+  });
+});
+
+describe('[Packages | User-domain | Formatter] formatUserResponse', () => {
+  test('format should return an instance of users that should be returned by the API', () => {
+    return expect(formatUserResponse({
+      id: '123',
+      first_name: 'John',
+      last_name: 'Smith',
+      company_name: 'Pleo',
+      ssn: 1,
+    })).toEqual({
+      first_name: 'John',
+      last_name: 'Smith',
+      company_name: 'Pleo',
     });
   });
 });
