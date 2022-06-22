@@ -30,8 +30,8 @@ app.get('/healthcheck', function healthcheckEndpoint(req, res) {
 app.use(context);
 app.use(security);
 
-app.use('/user', userRoutes);
-app.use('/user-expenses', userExpensesRoutes);
+app.use(userRoutes);
+app.use(userExpensesRoutes);
 
 app.use(function(err, req, res, _next) {
   res.status(err.status ?? 500).json(err);

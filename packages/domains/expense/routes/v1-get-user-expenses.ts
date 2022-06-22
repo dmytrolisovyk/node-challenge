@@ -10,7 +10,7 @@ export const router = Router();
 export const getUserExpensesHandler = async (req, res, next) => {
   const [expensesError, userExpenses] = await to(
     getUserExpenses(
-      req.query?.userId,
+      req.params?.userId,
       req.query?.page,
       req.query?.pageSize,
       req.query?.filter,
@@ -27,4 +27,4 @@ export const getUserExpensesHandler = async (req, res, next) => {
   return res.json(formatUserExpenseResponse(userExpenses));
 };
 
-router.get('/get-user-expenses', getExpenseValidator, getUserExpensesHandler);
+router.get('/user/:userId/expenses', getExpenseValidator, getUserExpensesHandler);

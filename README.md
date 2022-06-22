@@ -82,3 +82,6 @@ with updating the handler in server.ts.
 
 - Now, when the API is more or less ready, lets cover it by tests. Some people prefer to write them before, but then they require a lot of fixes.
 - Added unit test to test specific functions. The depencies are mocked. Also, added acceptance tests. For we assume that we have a shared db for testing. Ideally, we should use some inmemory db for such tests. Also, error handling in tests is a bit simplified: statuses are checked, but not messages.
+
+- Ok. Now let's improve some of the existing API. First of all, database connection code can be improved by using Pool.
+Also, let's make the API more RESTful and change the routes to GET /v1/user/:userId/details and  /v1/user/:userId/expenses

@@ -11,12 +11,12 @@ describe('GET User expense', () => {
         status: 'processed',
       },
     ];
-    Api.get('/user-expenses/v1/get-user-expenses?userId=da140a29-ae80-4f0e-a62d-6c2d2bc8a474&page=0&pageSize=3&sortBy=merchant_name&sort=asc&filter=Sliders&filterBy=merchant_name')
+    Api.get('/v1/user/da140a29-ae80-4f0e-a62d-6c2d2bc8a474/expenses?&page=0&pageSize=3&sortBy=merchant_name&sort=asc&filter=Sliders&filterBy=merchant_name')
       .expect(200, expectedBody, done);
   });
 
   test('Should return BadRequest when incorrect parameters in url', (done) => {
-    Api.get('/user-expenses/v1/get-user-expenses?userId=da140a29-ae80-4f0e-a62d-6c2d2bc8a474&page=-3')
+    Api.get('/v1/user/da140a29-ae80-4f0e-a62d-6c2d2bc8a474/expenses?page=-3')
       .expect(400, done);
   });
 });

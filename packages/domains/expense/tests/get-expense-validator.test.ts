@@ -11,11 +11,12 @@ describe('[Packages | Expense | Get-Expense-Validator] getExpenseValidator', () 
   ${'abc1'}   | ${undefined} | ${10}        | ${undefined} | ${'currency'}      | ${undefined} | ${undefined}  
   ${'abc5'}   | ${4}         | ${10}        | ${'pending'} | ${'wrong'}         | ${undefined} | ${undefined} 
   ${'abc4'}   | ${undefined} | ${undefined} | ${undefined} | ${undefined}       | ${'desc'}    | ${'wrong'}  
-  `('Returns BadRequest if validation parameters are incorrect', (queryParameters) => {
+  `('Returns BadRequest if validation parameters are incorrect', (parameters) => {
     const nextMock = jest.fn();
     const resMock = jest.fn();
     const req = {
-      query: queryParameters,
+      query: parameters,
+      params: { userId: parameters.userId }
     };
     getExpenseValidator(req, resMock, nextMock);
 
@@ -29,13 +30,14 @@ describe('[Packages | Expense | Get-Expense-Validator] getExpenseValidator', () 
   ${'abc1'}   | ${undefined} | ${30}        | ${'Store'}   | ${'merchant_name'} | ${undefined} | ${undefined}      
   ${'abc3'}   | ${undefined} | ${undefined} | ${'Store'}   | ${'merchant_name'} | ${undefined} | ${undefined}    
   ${'abc1'}   | ${2}         | ${10}        | ${'DDK'}     | ${'currency'}      | ${undefined} | ${undefined}  
-  ${'abc5'}   | ${4}         | ${10}        | ${'pending'} | ${'status'}        | ${'asc    '} | ${'date_created'} 
+  ${'abc5'}   | ${4}         | ${10}        | ${'pending'} | ${'status'}        | ${'asc'}     | ${'date_created'} 
   ${'abc4'}   | ${undefined} | ${undefined} | ${undefined} | ${undefined}       | ${'desc'}    | ${'date_created'}  
-  `('Succefully passes validation and calls next if data is correct', (queryParameters) => {
+  `('Succefully passes validation and calls next if data is correct', (parameters) => {
     const nextMock = jest.fn();
     const resMock = jest.fn();
     const req = {
-      query: queryParameters,
+      query: parameters,
+      params: { userId: parameters.userId }
     };
     getExpenseValidator(req, resMock, nextMock);
 

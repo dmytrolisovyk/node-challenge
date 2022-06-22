@@ -1,7 +1,7 @@
 import { BadRequest } from '@nc/utils/errors';
 
 export const getExpenseValidator = (req, res, next) => {
-  if (!req.query.userId) {
+  if (!req.params.userId) {
     next(BadRequest('userId property is missing.'));
   }
 
