@@ -81,4 +81,4 @@ with updating the handler in server.ts.
 - I was working to building querty for pagination\sorting\filtering and had some concernes. Pg.query uses prepared statements and params, but it doesn't work with dynamic queries. Even though pg doesn't allow multiple statements and I have some request validations I decided to use pg-format to make sure that all params are escaped and no SQL injection possible
 
 - Now, when the API is more or less ready, lets cover it by tests. Some people prefer to write them before, but then they require a lot of fixes.
-- Added unit test to test specific functions. The depencies are mocked.
+- Added unit test to test specific functions. The depencies are mocked. Also, added acceptance tests. For we assume that we have a shared db for testing. Ideally, we should use some inmemory db for such tests. Also, error handling in tests is a bit simplified: statuses are checked, but not messages.
