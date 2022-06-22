@@ -7,7 +7,7 @@ import { to } from '@nc/utils/async';
 
 export const router = Router();
 
-router.get('/get-user-expenses', getExpenseValidator, async (req, res, next) => {
+export const getUserExpensesHandler = async (req, res, next) => {
   const [expensesError, userExpenses] = await to(
     getUserExpenses(
       req.query?.userId,
@@ -25,4 +25,6 @@ router.get('/get-user-expenses', getExpenseValidator, async (req, res, next) => 
   }
 
   return res.json(formatUserExpenseResponse(userExpenses));
-});
+};
+
+router.get('/get-user-expenses', getExpenseValidator, getUserExpensesHandler);

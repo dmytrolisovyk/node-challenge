@@ -52,12 +52,12 @@ function addFiltering(filter: string, filterBy: string, query: string) {
 }
 
 export function readUserExpenses(userId,
-  page: number | undefined,
-  pageSize: number | undefined,
-  filter: string | undefined,
-  filterBy: string | undefined,
-  sort: 'asc' | 'desc' | undefined,
-  sortBy: string | undefined) {
+  page?: number | undefined,
+  pageSize?: number | undefined,
+  filter?: string | undefined,
+  filterBy?: string | undefined,
+  sort?: 'asc' | 'desc' | undefined,
+  sortBy?: string | undefined) {
   const query = buildQueryString(userId, page, pageSize, filter, filterBy, sort, sortBy);
 
   return dbQuery(query)

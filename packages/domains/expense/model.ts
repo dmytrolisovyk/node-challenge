@@ -6,12 +6,12 @@ import { InternalError, NotFound } from '@nc/utils/errors';
 
 export async function getUserExpenses(
   userId,
-  page,
-  pageSize,
-  filter,
-  filterBy,
-  sort,
-  sortBy
+  page?,
+  pageSize?,
+  filter?,
+  filterBy?,
+  sort?,
+  sortBy?
 ): Promise<UserExpense[]> {
   const pageAsInt = page === undefined ? undefined : parseInt(page);
   const pageSizeAsInt = pageSize === undefined ? undefined : parseInt(pageSize);
