@@ -10,7 +10,7 @@ describe('[Packages | Expense | DB-User-Expenses] buildQueryString', () => {
   ${'abc3'}| ${undefined} | ${undefined} | ${undefined} | ${undefined}       | ${'desc'}    | ${'currency'}     | ${'SELECT * FROM expenses WHERE user_id = \'abc3\' ORDER BY currency desc LIMIT \'20\''}
   ${'abc4'}| ${undefined} | ${undefined} | ${undefined} | ${undefined}       | ${undefined} | ${'currency'}     | ${'SELECT * FROM expenses WHERE user_id = \'abc4\' ORDER BY currency asc LIMIT \'20\''}
   ${'abc1'}| ${undefined} | ${10}        | ${undefined} | ${undefined}       | ${undefined} | ${undefined}      | ${'SELECT * FROM expenses WHERE user_id = \'abc1\' LIMIT \'10\''}
-  ${'abc5'}| ${4}         | ${10}        | ${'pending'}  | ${'status'}       | ${'desc'}    | ${'date_created'} | ${'SELECT * FROM expenses WHERE user_id = \'abc5\' and status = \'pending\' ORDER BY date_created desc OFFSET \'40\' LIMIT \'10\''}
+  ${'abc5'}| ${4}         | ${10}        | ${'pending'} | ${'status'}        | ${'desc'}    | ${'date_created'} | ${'SELECT * FROM expenses WHERE user_id = \'abc5\' and status = \'pending\' ORDER BY date_created desc OFFSET \'40\' LIMIT \'10\''}
   `('Builds correct query string with provided parameters', ({ userId, page, pageSize, filter, filterBy, sort, sortBy, expectedQuery }) => {
     expect(buildQueryString(userId, page, pageSize, filter, filterBy, sort, sortBy))
       .toEqual(expectedQuery);

@@ -29,7 +29,7 @@ export const getExpenseValidator = (req, res, next) => {
     next(BadRequest('filterBy value is incorrect'));
   }
   if (req.query.sort && !req.query.sortBy) {
-    next(BadRequest('sort value must be used together with sortBy'));
+    next(BadRequest('sort parameter must be provided together with sortBy'));
   }
 
   const allowedSortFields = ['merchant_name', 'currency', 'status', 'amount_in_cents', 'date_created'];

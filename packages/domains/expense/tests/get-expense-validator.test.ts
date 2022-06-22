@@ -16,7 +16,7 @@ describe('[Packages | Expense | Get-Expense-Validator] getExpenseValidator', () 
     const resMock = jest.fn();
     const req = {
       query: parameters,
-      params: { userId: parameters.userId }
+      params: { userId: parameters.userId },
     };
     getExpenseValidator(req, resMock, nextMock);
 
@@ -37,7 +37,7 @@ describe('[Packages | Expense | Get-Expense-Validator] getExpenseValidator', () 
     const resMock = jest.fn();
     const req = {
       query: parameters,
-      params: { userId: parameters.userId }
+      params: { userId: parameters.userId },
     };
     getExpenseValidator(req, resMock, nextMock);
 
